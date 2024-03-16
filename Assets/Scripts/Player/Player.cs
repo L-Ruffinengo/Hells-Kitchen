@@ -80,7 +80,7 @@ public class Player : MonoBehaviour, IKitchenObjectParent
         float moveDistance = moveSpeed * Time.deltaTime;
         float playerRadius = 0.7f;
         float playerHeight = 2f;
-        bool canMove = !Physics.CapsuleCast(transform.position, transform.position + Vector3.up * playerHeight,
+        bool canMove = moveDirection.x !=0 && !Physics.CapsuleCast(transform.position, transform.position + Vector3.up * playerHeight,
             playerRadius, moveDirection, moveDistance);
 
         // Diagonal movement when colliding
@@ -90,7 +90,7 @@ public class Player : MonoBehaviour, IKitchenObjectParent
 
             //Attempt only x movement
             Vector3 moveDirectionX = new Vector3(moveDirection.x, 0, 0).normalized;
-            canMove = !Physics.CapsuleCast(transform.position, transform.position + Vector3.up* playerHeight,
+            canMove = moveDirection.x != 0 && !Physics.CapsuleCast(transform.position, transform.position + Vector3.up* playerHeight,
             playerRadius, moveDirectionX, moveDistance);
 
             if (canMove)
